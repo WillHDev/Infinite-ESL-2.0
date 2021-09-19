@@ -37,35 +37,39 @@ const data2 = [
 async function fetchResourcesJSON() {
   const response = await fetch("http://localhost:8080/api/resources");
   const resources = await response.json();
-  console.log(resources)
+  console.log("1" + resources)
   return resources;
 }
 
-function App( ) {
-  const [resources] = useState([]);
 
-  useEffect(() => {
-    // You need to restrict it at some point
-    // This is just dummy code and should be replaced by actual
-      const data = fetchResourcesJSON();
-      return data;
-  }, []);
 
- 
-  console.log(resources);
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {resources: []};
+  }
 
-  //
+  async componentDidMount() {
+    // GET request using fetch with async/await
+    const response = await fetch('http://localhost:8080/api/resources');
+    const data = await response.json();
+    //Probably needs to specify
+    console.log(data);
+    this.setState({ resources: data })
+  }
   
-  return (
-   
-    <div className="App">
+
+  render() {
+    const { resources } = this.state;
+    return (
+      <div className="App">
        
       <header className="App-header">
       <>
         <Layout>
-        {/* <ResourceHighlight */}
-        
-        {/* />    */}
+         <ResourceHighlight 
+            resources={resources.slice(2)}
+       />   
         {/* <NewsLetter /> */}
         {/* <ResourceList 
          
@@ -76,9 +80,61 @@ function App( ) {
       </header>
       
     </div>
-   
-  );
+    );
+  }
 }
+
+
+
+// function App( ) {
+//   const [ resources, resourceSet ] = useState([]);
+
+//   // useEffect(() => {
+//   //   // You need to restrict it at some point
+//   //   // This is just dummy code and should be replaced by actual
+//   //     const data = fetchResourcesJSON();
+//   //     console.log(data);
+//   //     return data;
+//   // }, []);
+
+// useEffect(() => {
+//     async function fetchResources() {
+//       const fullResponse = await fetch('http://localhost:8080/api/resources');
+//       const responseJson = await fullResponse.json();
+//       resourceSet(responseJson.data);
+//     }
+
+//     fetchResources();
+//     console.log(resources);
+//   }, []);
+ 
+  
+
+//   //
+  
+//   return (
+   
+//     <div className="App">
+       
+//       <header className="App-header">
+//       <>
+//         <Layout>
+//         {/* <ResourceHighlight */}
+        
+//         {/* />    */}
+//         {/* <NewsLetter /> */}
+//         {/* <ResourceList 
+         
+//         /> */}
+//         <Footer />
+//         </Layout>
+//      </>
+//       </header>
+      
+//     </div>
+   
+//   );
+// }
 
 
 
