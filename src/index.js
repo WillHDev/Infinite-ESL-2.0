@@ -2,16 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter,
-  Switch,
-  Route,
-  Link
 } from "react-router-dom";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-    <div> <App /></div>
+   <BrowserRouter>
+   
+   <div> 
+      <App exact path="/" />
+      </div>
+
+      </BrowserRouter>
      ,
   
   document.getElementById('root')

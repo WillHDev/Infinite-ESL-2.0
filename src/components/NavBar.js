@@ -37,10 +37,12 @@ const Navbar = () => {
               {/* </Link> */}
 
               {/* <Link to="/resources/new"> */}
-              <a
-                  className="navbar-item is-size-5 has-text-weight-semibold">
-                Add
-              </a>
+            
+                  
+                  <Link to="/New"
+                  className="navbar-item is-size-5 has-text-weight-semibold">    Add </Link>
+             
+           
               {/* </Link> */}
               <a className="navbar-item is-size-5 has-text-weight-semibold">
                 Features
